@@ -21,14 +21,8 @@ public class WordListAdapter extends
         public final TextView wordItemView;
         final WordListAdapter mAdapter;
 
-        /**
-         * Creates a new custom view holder to hold the view to display in
-         * the RecyclerView.
-         *
-         * @param itemView The view in which to display the data.
-         * @param adapter The adapter that manages the the data and views
-         *                for the RecyclerView.
-         */
+
+
         public WordViewHolder(View itemView, WordListAdapter adapter) {
             super(itemView);
             wordItemView = itemView.findViewById(R.id.word);
