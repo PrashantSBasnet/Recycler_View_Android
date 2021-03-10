@@ -16,8 +16,12 @@ public class WordListAdapter extends
     private final LinkedList<String> mWordList;
     private final LayoutInflater mInflater;
 
-    class WordViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+
+
+
+
+    class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
         public final TextView wordItemView;
         final WordListAdapter mAdapter;
 
@@ -75,8 +79,12 @@ public class WordListAdapter extends
 
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
+
         return mWordList.size();
     }
+
+
 }
 
