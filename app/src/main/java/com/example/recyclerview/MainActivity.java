@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i <50; i++) {
             mWordList.addLast("Word " + i);
         }
 
