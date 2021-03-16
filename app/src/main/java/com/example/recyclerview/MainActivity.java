@@ -1,53 +1,46 @@
 package com.example.recyclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final LinkedList<String> mWordList = new LinkedList<>();
-
-    private RecyclerView mRecyclerView;
-    private WordListAdapter mAdapter;
-
-
-
+    private ArrayList<Sandwich> sandwichList ;
+    private RecyclerView recyclerView;
+    private SandwichAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String[] sandwiches = getResources().getStringArray(R.array.sandwich_details);
 
-        for (int i = 0; i < 50; i++) {
-            mWordList.addLast("Word " + i);
+        Log.d("debug-array", "" + sandwiches.length);
+
+        sandwichList = new ArrayList<Sandwich>();
+
+        for (String item: sandwiches){
+
+            sandwichList.add(JsonUtils.parseSandwichJson(item));
+
         }
 
+        Log.d("debug-list", "" + sandwichList.size());
 
-        // Get a handle to the RecyclerView.
-        mRecyclerView = findViewById(R.id.recyclerview);
-        // Create an adapter and supply the data to be displayed.
-        mAdapter = new WordListAdapter(this, mWordList);
-        // Connect the adapter with the RecyclerView.
-        mRecyclerView.setAdapter(mAdapter);
-        // Give the RecyclerView a default layout manager.
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = findViewById(R.id.sandwich_list);
 
-    }
+        // TODO (07) Create a new SandwichAdapter variable,
+        // and bind it to the RecyclerView’s Adapter.
 
+        adapter = new SandwichAdapter(this);
+        recyclerView.setAdapter(adapter);
 
-    public void onClick(View view) {
-        int wordListSize = mWordList.size();
-        // Add a new word to the wordList.
-        mWordList.addLast("+ Word " + wordListSize);
-        // Notify the adapter, that the data has changed.
-        mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
-        // Scroll to the bottom.
-        mRecyclerView.smoothScrollToPosition(wordListSize);
+        adapter.setData(sandwichList);
+
     }
 }
