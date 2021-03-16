@@ -10,19 +10,58 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
 
-public class WordListAdapter extends
-        RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
+public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
+
 
     private final LinkedList<String> mWordList;
     private final LayoutInflater mInflater;
 
-    class WordViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+
+    //Constructor of outer class. Any number of necessary para is supported
+    public WordListAdapter(Context context, LinkedList<String> wordList) {
+        mInflater = LayoutInflater.from(context);
+        this.mWordList = wordList;
+    }
+
+
+    //implemented methods of outer class
+    @Override
+    public WordListAdapter.WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // Inflate an item view.
+        View mItemView = mInflater.inflate(R.layout.wordlist_item, parent, false);
+        return new WordViewHolder(mItemView, this);
+    }
+
+
+    @Override
+    public void onBindViewHolder(WordListAdapter.WordViewHolder holder,
+                                 int position) {
+        // Retrieve the data for that position.
+        String mCurrent = mWordList.get(position);
+        // Add the data to the view holder.
+        holder.wordItemView.setText(mCurrent);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mWordList.size();
+    }
+
+
+
+
+
+    //--------*----------inner class--------*------------------
+
+    // inner class that is auto generated when the outer class extends RecyclerView....
+    class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
         public final TextView wordItemView;
         final WordListAdapter mAdapter;
 
 
 
+        //constructor of inner class
         public WordViewHolder(View itemView, WordListAdapter adapter) {
             super(itemView);
             wordItemView = itemView.findViewById(R.id.word);
@@ -44,39 +83,8 @@ public class WordListAdapter extends
             // update the RecyclerView to display the data.
             mAdapter.notifyDataSetChanged();
         }
-    }
-
-    public WordListAdapter(Context context, LinkedList<String> wordList) {
-        mInflater = LayoutInflater.from(context);
-        this.mWordList = wordList;
-    }
+    }//*---*  inner class ends *---*
 
 
-    @Override
-    public WordListAdapter.WordViewHolder onCreateViewHolder(ViewGroup parent,
-                                                             int viewType) {
-        // Inflate an item view.
-        View mItemView = mInflater.inflate(
-                R.layout.wordlist_item, parent, false);
-        return new WordViewHolder(mItemView, this);
-    }
-
-
-
-    @Override
-    public void onBindViewHolder(WordListAdapter.WordViewHolder holder,
-                                 int position) {
-        // Retrieve the data for that position.
-        String mCurrent = mWordList.get(position);
-        // Add the data to the view holder.
-        holder.wordItemView.setText(mCurrent);
-    }
-
-
-
-    @Override
-    public int getItemCount() {
-        return mWordList.size();
-    }
 }
 

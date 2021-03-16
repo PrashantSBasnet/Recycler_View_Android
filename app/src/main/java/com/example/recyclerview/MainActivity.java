@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final LinkedList<String> mWordList = new LinkedList<>();
 
+    //required objects
     private RecyclerView mRecyclerView;
     private WordListAdapter mAdapter;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //to store data
         for (int i = 0; i < 20; i++) {
             mWordList.addLast("Word " + i);
         }
