@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void onClick(View view) {
         int wordListSize = mWordList.size();
         // Add a new word to the wordList.
@@ -49,5 +50,30 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
         // Scroll to the bottom.
         mRecyclerView.smoothScrollToPosition(wordListSize);
+    }
+
+    public void Reset(View view) {
+
+        //clears the list
+        mWordList.clear();
+
+
+        //re initializes the list
+        for (int i = 0; i < 50; i++) {
+            mWordList.addLast("Word " + i);
+        }
+
+
+        // Get a handle to the RecyclerView.
+        mRecyclerView = findViewById(R.id.recyclerview);
+        // Get a handle to the RecyclerView.
+        mRecyclerView = findViewById(R.id.recyclerview);
+        // Create an adapter and supply the data to be displayed.
+        mAdapter = new WordListAdapter(this, mWordList);
+        // Connect the adapter with the RecyclerView.
+
+        mRecyclerView.setAdapter(mAdapter);
+        // Give the RecyclerView a default layout manager.
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
