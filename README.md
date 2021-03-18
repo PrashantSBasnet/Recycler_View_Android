@@ -1,3 +1,4 @@
+
 <h2> RecyclerView </h2>
 <h4>Coding Challenge</h4>
 <ul>
@@ -7,7 +8,7 @@
 
 
 
-
+![rcc](https://user-images.githubusercontent.com/50170332/111567543-3d342000-87c7-11eb-9fa1-48033bcdb35c.gif)
 
 
 author: Prashant Singh Basnet
